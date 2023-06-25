@@ -1,6 +1,6 @@
 package com.CRUDexamples.emp.springbootrestfulwebserviceemp.Service.Impl;
 
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,8 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public Employee getEmpById(Long empId) {
 		Optional<Employee> optemp = empRepository.findById(empId);
+//		List<Employee> getbyid = new ArrayList<>();
+//		getbyid.add(optemp.get());
 		return optemp.get();
 	}
 
@@ -36,6 +38,12 @@ public class EmpServiceImpl implements EmpService {
 		updateEmp.setFirstName(emp.getFirstName());
 		updateEmp.setLastName(emp.getLastName());
 		updateEmp.setSalary(emp.getSalary());
+		updateEmp.setAddress(emp.getAddress());
+		updateEmp.setDob(emp.getDob());
+		updateEmp.setGender(emp.getGender());
+		updateEmp.setPhonenumber(emp.getPhonenumber());
+		updateEmp.setPincode(emp.getPincode());
+		updateEmp.setMarital_status(emp.getMarital_status());
 		return updateEmp;
 	}
 

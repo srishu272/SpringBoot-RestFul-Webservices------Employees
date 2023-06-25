@@ -38,13 +38,13 @@ public class EmpController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Employee> getEmpById(@PathVariable("id") Long empId) {
-		Employee emp = empService.getEmpById(empId);
-		return new ResponseEntity<>(emp, HttpStatus.FOUND);
+		Employee emp =  empService.getEmpById(empId);
+		return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
 	
 	@GetMapping("/name")
-	public ResponseEntity<List<Employee>> getEmpByname(@RequestBody HashMap<String,String> name){
-		List<Employee> emp = empService.getEmpByName(name.get("firstName"), name.get("lastName"));
+	public ResponseEntity<List<Employee>> getEmpByname(@RequestParam String firstName, @RequestParam String lastName){
+		List<Employee> emp = empService.getEmpByName(firstName, lastName);
 		return new ResponseEntity<>(emp, HttpStatus.OK);
 		
 	}
@@ -55,7 +55,7 @@ public class EmpController {
 		return new ResponseEntity<>(empList, HttpStatus.OK);
 	}
 
-	@PostMapping("/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Employee> updateEmp(@PathVariable("id") Long empId, @RequestBody Employee emp) {
 		emp.setId(empId);
 		Employee updatedEmp = empService.updateEmp(emp);
